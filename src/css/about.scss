@@ -1,0 +1,27 @@
+.about-section{
+    width: calc(90% - 20px);
+    padding: 10px;
+    .about-header{
+        width: calc(90% - 10px);
+        padding: 5px;
+        font-size: 2.9em;
+        font-family: "Bebas Neue",sans-serif;
+        letter-spacing: 0.1em;
+        margin-bottom: 9vh;
+    }
+    .purpose-desc,.repo-adress{
+        font-family: "Oswald",sans-serif;
+    }
+    .purpose-desc{
+        width: calc(60% - 10px);
+        padding: 5px;
+        font-family: 1.9em;
+        margin-bottom: 17px;
+    }
+    .repo-adress{
+        font-size: 1.2em;
+        .github-link{
+            color: black;
+        }
+    }
+}

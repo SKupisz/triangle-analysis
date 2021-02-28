@@ -1,0 +1,41 @@
+.results-container{
+    width: calc(80% - 20px);
+    padding: 10px;
+    text-align: center;
+}
+.main-header{
+    width: calc(90% - 10px);
+    padding: 5px;
+    font-family: "Oswald",sans-serif;
+    font-size: 2.9em;
+    letter-spacing: 0.1em;
+    margin-bottom: 4vh;
+}
+.section-starter{
+    width: calc(90% - 10px);
+    padding: 5px;
+    text-align: left;
+    text-indent: 1em;
+    border-bottom: 1px solid #ddd;
+    font-family: "Bebas Neue",sans-serif;
+    margin-bottom: 30px;
+    font-size: 1.7em;
+}
+.another-starter{
+    margin-top: 40px;
+}
+.info-wrapper{
+    width: calc(100% - 10px);
+    padding: 5px;
+    text-align: left;
+    font-size: 1.2em;
+    font-family: "Oswald",sans-serif;
+    letter-spacing: 0.08em;
+    margin: 7px auto;
+}
+.go-back-button{
+    width: calc(40% - 20px);
+    padding: 10px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}

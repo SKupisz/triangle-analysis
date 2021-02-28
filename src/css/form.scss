@@ -1,0 +1,75 @@
+body{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+input[type="number"]{
+    -moz-appearance: textfield;
+}
+.block-center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.main-container{
+    width: calc(90% - 10px);
+    padding: 5px;
+}
+.paths-wrapper{
+    width: calc(80% - 20px);
+    padding: 10px;
+    font-family: "Bebas Neue",sans-serif;
+    .paths{
+        margin: 10px 0px;
+        border-radius: 10px;
+        background: rgba(255,255,255,.3);
+        width: fit-content;
+        padding: 5px 20px;
+        width: calc(100% - 40px);
+        .number-input{
+            width: 50px;
+            text-align: center;
+            height: fit-content;
+            padding: 10px;
+            font-size: 1.4em;
+            font-family: "Bebas Neue",sans-serif;
+            border: none;
+            border-bottom: 1px solid black;
+            transition: all 0.4s;
+            background: rgba(255,255,255,.8);
+        }
+        .first-input{
+            margin-left: 10px;
+        }
+        .number-input:hover,.number-input:focus{
+            filter: brightness(70%);
+        }
+        .number-input:focus{
+            outline: none;
+        }
+    }
+}
+.getTheResultsBtn{
+    width: calc(20% - 20px);
+    padding: 10px;
+    font-size: 1.5em;
+    font-family: "Bebas Neue",sans-serif;
+    position: relative;
+    top: 2vh;
+    border: none;
+    border-radius: 10px;
+    background: rgba(110, 248, 237, 0.8);
+    cursor: pointer;
+    transition: all 0.4s;
+}
+.getTheResultsBtn:hover,.getTheResultsBtn:focus{
+    filter: brightness(70%);
+}
+.getTheResultsBtn:focus{
+    outline: none;
+}

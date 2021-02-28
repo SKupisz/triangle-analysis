@@ -1,0 +1,32 @@
+$main-navbar-height: 60px;
+.main-navbar{
+    width: calc(100% - 10px);
+    padding: 5px;
+    position: fixed;
+    top: 0px;
+    height: $main-navbar-height;
+    text-align: left;
+    border-bottom: 1px solid #222;
+    background: rgba(255,255,255,1);
+    .nav-elem{
+        width: fit-content;
+        padding: 5px 20px;
+        display: inline-block;
+        height: 50px;
+        background: rgba(255,255,255,.8);
+        vertical-align: top;
+        color: black;
+        font-family: "Oswald",sans-serif;
+        font-size: 1.8em;
+        margin: 0px 10px;
+        cursor: pointer;
+        transition: all 0.4s;
+        border-radius: 10px;
+    }
+    .nav-elem:hover{
+        filter: brightness(70%);
+    }
+}
+.main-content{
+    margin-top: calc(#{$main-navbar-height} + 10px);
+}
