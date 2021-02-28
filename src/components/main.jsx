@@ -8,7 +8,7 @@ export default class Main extends React.Component{
             a1: null, b1: null, c1: null,
             a2: null, b2: null, c2: null,
             a3: null, b3: null, c3: null,
-            phase: 1,
+            phase: 4, /* 1 - default, 2 - initiated calculating, 3 - done, 4 - parallel lines error*/
         };
 
         this.calculateTheArea = this.calculateTheArea.bind(this);
@@ -25,6 +25,13 @@ export default class Main extends React.Component{
                 this.setState({
                     phase: 1
                 },() => {});
+            }
+            else if(this.state.a1*this.state.b2 == this.state.a2*this.state.b1 || 
+                this.state.a2*this.state.b3 == this.state.a3*this.state.b3 || 
+                this.state.a3*this.state.b1 == this.state.a1*this.state.b3){
+                this.setState({
+                    phase: 4
+                }, () => {});
             }
             else{
                 let xa = 0, ya = 0,
@@ -201,13 +208,14 @@ export default class Main extends React.Component{
         },() => {});
     }
     componentDidMount(){
-        this.calculateTheArea();
+        //this.calculateTheArea();
     }
     render(){
         return(
             <div className="main-container block-center">
                 {this.state.phase === 1 ? <span className="data-wrap">
                     <div className="paths-wrapper block-center">
+                        <header className="paths-header">Podaj współczynniki każdej z 3 prostych (włącznie z zerami)</header>
                         <div className="paths">
                             Prosta k: 
                             <input type="number" onChange = {(event) => {this.updateTheFactor(event,1)}} className = "number-input first-input" step = "0.01" name="" id=""/>x + 
@@ -229,6 +237,7 @@ export default class Main extends React.Component{
                     </div>
                     <button className="getTheResultsBtn block-center" onClick = {() => {this.calculateTheArea()}}>Oblicz</button>
                 </span> : this.state.phase === 2 ? "Obliczanie..." :
+                this.state.phase === 3 ?
                 <span className="results-wrap">
                     <div className="results-container block-center">
                         <header className="main-header block-center">Wyniki analizy</header>
@@ -260,7 +269,12 @@ export default class Main extends React.Component{
 
                         <button className="getTheResultsBtn go-back-button block-center" onClick = {() => {this.goBackToTheBeginning();}}>Powrót</button>
                     </div>
-                </span>}
+                </span> : <div className="error-container">
+                        <header className="error-header block-center">Błąd</header>
+                        <div className="error-describe block-center">Dwie lub więcej linii są do siebie równoległe, więc nie powstanie trójkąt</div>
+                        <button className="getTheResultsBtn go-back-button block-center" onClick = {() => {this.goBackToTheBeginning();}}>Powrót</button>
+                    </div>}
+                
             </div>
         )
     }
