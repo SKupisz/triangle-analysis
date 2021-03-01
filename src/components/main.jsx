@@ -8,7 +8,7 @@ export default class Main extends React.Component{
             a1: null, b1: null, c1: null,
             a2: null, b2: null, c2: null,
             a3: null, b3: null, c3: null,
-            phase: 4, /* 1 - default, 2 - initiated calculating, 3 - done, 4 - parallel lines error*/
+            phase: 1, /* 1 - default, 2 - initiated calculating, 3 - done, 4 - parallel lines error*/
         };
 
         this.calculateTheArea = this.calculateTheArea.bind(this);
@@ -19,12 +19,19 @@ export default class Main extends React.Component{
         this.setState({
             phase: 2
         },() => {
-            if(this.state.a1 == null || this.state.b1 == null || this.state.c1 == null ||
-                this.state.a2 == null || this.state.b2 == null || this.state.c2 == null ||
-                this.state.a3 == null || this.state.b3 == null || this.state.c3 == null){
+            if(this.state.a1 === null || this.state.b1 === null || this.state.c1 === null ||
+                this.state.a2 === null || this.state.b2 === null || this.state.c2 === null ||
+                this.state.a3 === null || this.state.b3 === null || this.state.c3 === null){
                 this.setState({
                     phase: 1
                 },() => {});
+            }
+            else if((this.state.a1 === 0 && this.state.b1 === 0) ||
+            (this.state.a2 === 0 && this.state.b2 === 0) ||
+            (this.state.a2 === 0 && this.state.b3 === 0)){
+                this.setState({
+                    phase: 5
+                }, () => {});
             }
             else if(this.state.a1*this.state.b2 == this.state.a2*this.state.b1 || 
                 this.state.a2*this.state.b3 == this.state.a3*this.state.b3 || 
@@ -261,17 +268,18 @@ export default class Main extends React.Component{
                         <div className="info-wrapper">Kąt BCA: sinγ = {this.state.trigFunctions[2][0]}, cosγ = {this.state.trigFunctions[2][1]}</div>
 
                         <div className="section-starter another-starter">Okrąg opisany</div>
-                        <div className="info-wrapper">Równanie symetralnej boku AB: {this.state.abPerpendicular}</div>
-                        <div className="info-wrapper">Równanie symetralnej boku AC: {this.state.acPerpendicular}</div>
-                        <div className="info-wrapper">Równanie symetralnej boku BC: {this.state.bcPerpendicular}</div>
+                        <div className="info-wrapper">Równanie symetralnej boku AB: <div className = "breaker"></div>{this.state.abPerpendicular}</div>
+                        <div className="info-wrapper">Równanie symetralnej boku AC: <div className = "breaker"></div>{this.state.acPerpendicular}</div>
+                        <div className="info-wrapper">Równanie symetralnej boku BC: <div className = "breaker"></div>{this.state.bcPerpendicular}</div>
                         <div className="info-wrapper">Współrzędne środka okręgu: S({this.state.escribedCircleData[0]+", "+this.state.escribedCircleData[1]})</div>
-                        <div className="info-wrapper">Równanie okręgu opisanego: {this.state.escribedCircleEquitation}</div>
+                        <div className="info-wrapper">Równanie okręgu opisanego: <div className = "breaker"></div>{this.state.escribedCircleEquitation}</div>
 
                         <button className="getTheResultsBtn go-back-button block-center" onClick = {() => {this.goBackToTheBeginning();}}>Powrót</button>
                     </div>
                 </span> : <div className="error-container">
                         <header className="error-header block-center">Błąd</header>
-                        <div className="error-describe block-center">Dwie lub więcej linii są do siebie równoległe, więc nie powstanie trójkąt</div>
+                        <div className="error-describe block-center">{this.state.phase === 4 ? "Dwie lub więcej linii są do siebie równoległe, więc nie powstanie trójkąt" :
+                        "Równanie jednej lub więcej prostych nie opisuje prostej (współczynniki przy x i y są równe 0) "}</div>
                         <button className="getTheResultsBtn go-back-button block-center" onClick = {() => {this.goBackToTheBeginning();}}>Powrót</button>
                     </div>}
                 

@@ -39,3 +39,43 @@
     margin-top: 30px;
     margin-bottom: 40px;
 }
+.breaker{
+    display: none;
+}
+@media screen and (max-width: 750px){
+    .results-container{
+        width: calc(100% - 20px);
+    }
+    .main-header{
+        font-size: 2.3em;
+    }
+    .section-starter{
+        width: calc(95% - 10px);
+        text-indent: 0.7em;
+        margin-bottom: 20px;
+        font-size: 1.3em;
+    }
+}
+@media screen and (max-width: 660px){
+    .info-wrapper{
+        font-size: 0.9em;
+    }
+}
+@media screen and (max-width: 547px){
+    .breaker{
+        display: block;
+    }
+}
+@media screen and (max-width: 425px){
+    .main-header{
+        font-size: 1.8em;
+    }
+    .section-starter{
+        font-size: 0.9em;
+        width: calc(100% - 10px);
+        text-indent: 0.5em;
+    }
+    .info-wrapper{
+        font-size: 0.7em;
+    }
+}

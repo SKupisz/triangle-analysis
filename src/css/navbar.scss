@@ -30,3 +30,22 @@ $main-navbar-height: 60px;
 .main-content{
     margin-top: calc(#{$main-navbar-height} + 10px);
 }
+@media screen and (max-width: 737px){
+    .main-navbar{
+        text-align: center;
+    }
+}
+@media screen and (max-width: 400px){
+    .main-navbar{
+        .nav-elem{
+            font-size: 1.4em;
+        }
+    }
+}
+@media screen and (max-width: 310px){
+    .main-navbar{
+        .nav-elem{
+            font-size: 1.1em;
+        }
+    }
+}

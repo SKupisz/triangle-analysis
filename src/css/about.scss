@@ -15,13 +15,39 @@
     .purpose-desc{
         width: calc(60% - 10px);
         padding: 5px;
-        font-family: 1.9em;
+        font-size: 1.3em;
         margin-bottom: 17px;
     }
     .repo-adress{
         font-size: 1.2em;
         .github-link{
             color: black;
+        }
+    }
+    .author-data{
+        position: relative;
+        top: 80px;
+    }
+}
+@media screen and (max-width: 688px){
+    .about-section{
+        width: calc(100% - 20px);
+        .purpose-desc{
+            width: calc(80% - 10px);
+            font-size: 1.1em;
+        }
+        .repo-adress{
+            font-size: 0.9em;
+        }
+    }
+}
+@media screen and (max-width: 517px){
+    .about-section{
+        .about-header{
+            font-size: 2.4em;
+        }
+        .purpose-desc{
+            width: calc(100% - 10px);
         }
     }
 }
