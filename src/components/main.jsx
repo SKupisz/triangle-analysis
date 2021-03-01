@@ -33,12 +33,16 @@ export default class Main extends React.Component{
                     phase: 5
                 }, () => {});
             }
-            else if(this.state.a1*this.state.b2 == this.state.a2*this.state.b1 || 
-                this.state.a2*this.state.b3 == this.state.a3*this.state.b3 || 
-                this.state.a3*this.state.b1 == this.state.a1*this.state.b3){
+            else if((this.state.a1*this.state.b2 == this.state.a2*this.state.b1 && this.state.a2*this.state.b1 != 0 && this.state.a1*this.state.b2) || 
+                (this.state.a2*this.state.b3 == this.state.a3*this.state.b2 && this.state.a3*this.state.b3 != 0 && this.state.a2*this.state.b3 != 0) || 
+                (this.state.a3*this.state.b1 == this.state.a1*this.state.b3 && this.state.a1*this.state.b3 != 0 && this.state.a3*this.state.b1 !=0)){
                 this.setState({
                     phase: 4
-                }, () => {});
+                }, () => {
+                    console.log(this.state.a1*this.state.b2, this.state.a2*this.state.b1);
+                    console.log(this.state.a2*this.state.b3, this.state.a3*this.state.b3);
+                    console.log(this.state.a3*this.state.b1, this.state.a1*this.state.b3)
+                });
             }
             else{
                 let xa = 0, ya = 0,
@@ -46,11 +50,26 @@ export default class Main extends React.Component{
                 xc = 0, yc = 0;
                 // calculating corner's coordinates
                 ya = ((this.state.a3*this.state.c1-this.state.a1*this.state.c3)/(this.state.a1*this.state.b3-this.state.a3*this.state.b1));
-                xa = ((-this.state.b1*ya-this.state.c1)/this.state.a1);
+                if(this.state.a1 != 0){
+                    xa = ((-this.state.b1*ya-this.state.c1)/this.state.a1);
+                }
+                else if(this.state.a1 == 0){
+                    xa = ((-this.state.b3*ya-this.state.c3)/this.state.a3);
+                }
                 yb = ((this.state.a3*this.state.c2-this.state.a2*this.state.c3)/(this.state.a2*this.state.b3-this.state.a3*this.state.b2));
-                xb = ((-this.state.b3*yb-this.state.c3)/this.state.a3);
+                if(this.state.a3 != 0){
+                    xb = ((-this.state.b3*yb-this.state.c3)/this.state.a3);
+                }
+                else if(this.state.a3 == 0){
+                    xb = ((-this.state.b2*yb-this.state.c2)/this.state.a2);
+                }
                 yc = ((this.state.a2*this.state.c1-this.state.a1*this.state.c2)/(this.state.a1*this.state.b2-this.state.a2*this.state.b1));
-                xc = ((-this.state.b1*yc-this.state.c1)/this.state.a1);
+                if(this.state.a1 != 0){
+                    xc = ((-this.state.b1*yc-this.state.c1)/this.state.a1);
+                }
+                else if(this.state.a1 == 0){
+                    xc = ((-this.state.b2*yc-this.state.c2)/this.state.a2);
+                }
 
                 // Triangle's area
                 let area = Math.abs(xa*(yb-yc)+xb*(yc-ya)+xc*(ya-yb));
@@ -67,8 +86,8 @@ export default class Main extends React.Component{
                 if(Math.pow(smallest,2)+Math.pow(middle,2) == Math.pow(biggest,2)) type = "prostokątny";
                 else if(Math.pow(smallest,2)+Math.pow(middle,2) < Math.pow(biggest,2)) type = "rozwartokątny";
                 else type = "ostrokątny";
-                if(ab == ac && ab == bc) type+= "równoboczny";
-                else if((ab == ac && ab != bc) || (ab == bc && ab != ac) || (bc == ac && bc != ab)) type+="równoramienny";
+                if(ab == ac && ab == bc) type+=" równoboczny";
+                else if((ab == ac && ab != bc) || (ab == bc && ab != ac) || (bc == ac && bc != ab)) type+=" równoramienny";
                 
                 // trigonometric functions of each angle
 
