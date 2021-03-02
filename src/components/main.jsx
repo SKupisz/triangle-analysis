@@ -33,16 +33,12 @@ export default class Main extends React.Component{
                     phase: 5
                 }, () => {});
             }
-            else if((this.state.a1*this.state.b2 == this.state.a2*this.state.b1 && this.state.a2*this.state.b1 != 0 && this.state.a1*this.state.b2) || 
-                (this.state.a2*this.state.b3 == this.state.a3*this.state.b2 && this.state.a3*this.state.b3 != 0 && this.state.a2*this.state.b3 != 0) || 
-                (this.state.a3*this.state.b1 == this.state.a1*this.state.b3 && this.state.a1*this.state.b3 != 0 && this.state.a3*this.state.b1 !=0)){
+            else if((this.state.a1*this.state.b2 === this.state.a2*this.state.b1 && this.state.a2*this.state.b1 !== 0 && this.state.a1*this.state.b2 !== 0) || 
+                (this.state.a2*this.state.b3 === this.state.a3*this.state.b2 && this.state.a3*this.state.b3 !== 0 && this.state.a2*this.state.b3 !== 0) || 
+                (this.state.a3*this.state.b1 === this.state.a1*this.state.b3 && this.state.a1*this.state.b3 !== 0 && this.state.a3*this.state.b1 !== 0)){
                 this.setState({
                     phase: 4
-                }, () => {
-                    console.log(this.state.a1*this.state.b2, this.state.a2*this.state.b1);
-                    console.log(this.state.a2*this.state.b3, this.state.a3*this.state.b3);
-                    console.log(this.state.a3*this.state.b1, this.state.a1*this.state.b3)
-                });
+                }, () => {});
             }
             else{
                 let xa = 0, ya = 0,
@@ -50,24 +46,24 @@ export default class Main extends React.Component{
                 xc = 0, yc = 0;
                 // calculating corner's coordinates
                 ya = ((this.state.a3*this.state.c1-this.state.a1*this.state.c3)/(this.state.a1*this.state.b3-this.state.a3*this.state.b1));
-                if(this.state.a1 != 0){
+                if(this.state.a1 !== 0){
                     xa = ((-this.state.b1*ya-this.state.c1)/this.state.a1);
                 }
-                else if(this.state.a1 == 0){
+                else if(this.state.a1 === 0){
                     xa = ((-this.state.b3*ya-this.state.c3)/this.state.a3);
                 }
                 yb = ((this.state.a3*this.state.c2-this.state.a2*this.state.c3)/(this.state.a2*this.state.b3-this.state.a3*this.state.b2));
-                if(this.state.a3 != 0){
+                if(this.state.a3 !== 0){
                     xb = ((-this.state.b3*yb-this.state.c3)/this.state.a3);
                 }
-                else if(this.state.a3 == 0){
+                else if(this.state.a3 === 0){
                     xb = ((-this.state.b2*yb-this.state.c2)/this.state.a2);
                 }
                 yc = ((this.state.a2*this.state.c1-this.state.a1*this.state.c2)/(this.state.a1*this.state.b2-this.state.a2*this.state.b1));
-                if(this.state.a1 != 0){
+                if(this.state.a1 !== 0){
                     xc = ((-this.state.b1*yc-this.state.c1)/this.state.a1);
                 }
-                else if(this.state.a1 == 0){
+                else if(this.state.a1 === 0){
                     xc = ((-this.state.b2*yc-this.state.c2)/this.state.a2);
                 }
 
@@ -83,11 +79,11 @@ export default class Main extends React.Component{
                 // checking if the triangle is an rectangular, an acute angled or an obtuse one
                 let type = "", biggest = Math.max(ab,Math.max(ac,bc)),
                 smallest = Math.min(ab,Math.min(ac,bc)), middle = ab+ac+bc-biggest-smallest;
-                if(Math.pow(smallest,2)+Math.pow(middle,2) == Math.pow(biggest,2)) type = "prostokątny";
+                if(Math.pow(smallest,2)+Math.pow(middle,2) === Math.pow(biggest,2)) type = "prostokątny";
                 else if(Math.pow(smallest,2)+Math.pow(middle,2) < Math.pow(biggest,2)) type = "rozwartokątny";
                 else type = "ostrokątny";
-                if(ab == ac && ab == bc) type+=" równoboczny";
-                else if((ab == ac && ab != bc) || (ab == bc && ab != ac) || (bc == ac && bc != ab)) type+=" równoramienny";
+                if(ab === ac && ab === bc) type+=" równoboczny";
+                else if((ab === ac && ab !== bc) || (ab === bc && ab !== ac) || (bc === ac && bc !== ab)) type+=" równoramienny";
                 
                 // trigonometric functions of each angle
 
@@ -109,26 +105,26 @@ export default class Main extends React.Component{
                 acc = (-acx*acMiddle[0]-acy*acMiddle[1]).toFixed(3),
                 bcc = (-bcx*bcMiddle[0]-bcy*bcMiddle[1]).toFixed(3);
                 let finalOfAb = "",finalOfAc="", finalOfBc = "";
-                if(abx != 0) finalOfAb+=(abx+"x + ");
-                if(aby != 0) {
-                    if(abc == 0) finalOfAb+=(aby+"y ");
+                if(abx !== 0) finalOfAb+=(abx+"x + ");
+                if(aby !== 0) {
+                    if(abc === 0) finalOfAb+=(aby+"y ");
                     else finalOfAb+=(aby+"y + ");
                 }
-                if(abc != 0) finalOfAb+=(abc);
+                if(abc !== 0) finalOfAb+=(abc);
                 finalOfAb+=" = 0";
-                if(acx != 0) finalOfAc+=(acx+"x + ");
-                if(acy != 0) {
-                    if(acc == 0) finalOfAc+=(acy+"y ");
+                if(acx !== 0) finalOfAc+=(acx+"x + ");
+                if(acy !== 0) {
+                    if(acc === 0) finalOfAc+=(acy+"y ");
                     else finalOfAc+=(acy+"y + ");
                 }
-                if(acc != 0) finalOfAc+=(acc);
+                if(acc !== 0) finalOfAc+=(acc);
                 finalOfAc+=" = 0";
-                if(bcx != 0) finalOfBc+=(bcx+"x + ");
-                if(bcy != 0) {
-                    if(bcc == 0) finalOfBc+=(bcy+"y ");
+                if(bcx !== 0) finalOfBc+=(bcx+"x + ");
+                if(bcy !== 0) {
+                    if(bcc === 0) finalOfBc+=(bcy+"y ");
                     else finalOfBc+=(bcy+"y + ");
                 }
-                if(bcc != 0) finalOfBc+=(bcc);
+                if(bcc !== 0) finalOfBc+=(bcc);
                 finalOfBc+=" = 0";
 
                 // counting the bisector of each angle
@@ -141,10 +137,10 @@ export default class Main extends React.Component{
                 let ys = (-abx*xs-abc)/aby;
                 let EscribedRadius = bc/(2*sinA);
                 let CircleEquitation = "";
-                if(xs == 0) CircleEquitation+="x^2 + ";
+                if(xs === 0) CircleEquitation+="x^2 + ";
                 else if(xs > 0) CircleEquitation+="(x-"+xs.toFixed(3)+")^2 + ";
                 else CircleEquitation+="(x+"+(xs*(-1)).toFixed(3)+")^2 + ";
-                if(ys == 0) CircleEquitation+="y^2 ";
+                if(ys === 0) CircleEquitation+="y^2 ";
                 else if(ys > 0) CircleEquitation+="(y-"+ys.toFixed(3)+")^2 ";
                 else CircleEquitation+="(y+"+(ys*(-1)).toFixed(3)+")^2 ";
                 CircleEquitation+=("= "+Math.pow(EscribedRadius,2).toFixed(3));
